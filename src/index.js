@@ -20,7 +20,6 @@ app.get("/", (req,res) => {
 app.use('/api/members', require('./routes/api/members'))
 
 
-
 app.listen(PORT, () => {
     console.log(`server is running on Port: ${PORT}`)
 })

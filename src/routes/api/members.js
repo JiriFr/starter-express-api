@@ -3,6 +3,7 @@ const router = express.Router()
 
 const members = require('../../../Members')
 
+
 // Gets All Members
 //Query string => query property on the request object
 // localhost:3000/person?name=thomas&age=20
@@ -19,7 +20,6 @@ router.get('/', (req,res) => {
     else {
         res.json(members)
     }
-    
 })
 
 // Get Single Member
@@ -31,7 +31,6 @@ router.get('/:id', (req,res) => {
         res.status(400).json({msg: `Member id:${req.params.id} not found`})
     }
 })
-
 
 
  module.exports = router
