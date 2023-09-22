@@ -1,7 +1,21 @@
+const cors = require("cors")
+
 const express = require('express')
+
 const app = express()
-app.all('/', (req, res) => {
-    console.log("Just got a request!")
-    res.send('Yes!')
+const PORT = process.env.PORT || 8000
+
+app.use(cors())
+app.use(express.urlencoded( {extended: true} ))
+app.use(express.json())
+
+
+app.get("/", (req,res) => {
+    res.json("Hello mate!")
 })
-app.listen(process.env.PORT || 3000)
+
+
+
+app.listen(PORT, () => {
+    console.log(`server is running on Port: ${PORT}`)
+})
