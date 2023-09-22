@@ -3,11 +3,17 @@ const cors = require("cors")
 const express = require('express')
 
 const app = express()
-const PORT = process.env.PORT || 8080
 
+let personRoute = require('./routes/person')
+
+app.use(personRoute)
 app.use(cors())
 app.use(express.urlencoded( {extended: true} ))
 app.use(express.json())
+
+
+const PORT = process.env.PORT || 8080
+
 
 
 app.get("/", (req,res) => {
