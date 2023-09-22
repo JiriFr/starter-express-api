@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const members = require('../../../Members')
-
+const sites = require('../../sites')
 
 // Gets All Members
 //Query string => query property on the request object
@@ -22,6 +22,9 @@ router.get('/', (req,res) => {
     }
 })
 
+router.get('/sites', sites.accountDetails)
+
+
 // Get Single Member
 router.get('/:id', (req,res) => {
     const found = members.some(m => m.id === req.params.id)
@@ -33,4 +36,5 @@ router.get('/:id', (req,res) => {
 })
 
 
- module.exports = router
+
+module.exports = router
