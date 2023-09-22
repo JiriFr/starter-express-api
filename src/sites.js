@@ -20,17 +20,28 @@ const distance = (lat1,lon1,lat2,lon2) => {
 
 const accountDetails = async (req,res) => {
     const sitesResponse = await axios.get("https://www.paragliding-mapa.cz/api/v0.1/launch")
-
+    var sitesData = []
     sitesResponse.data.data.forEach((el) => {
         //BRNO: const d = distance(49.1826582,16.6316407,el.latitude, el.longitude)
         const d = distance(50.0915,16.2631,el.latitude, el.longitude)
-         
+        
         if (d<50) {
+            sitesData.push(
+                {
+                    id:el.id,
+                    name:el.name,
+                    distance:d,
+                    wind_usable_from: el.wind_usable_from,
+                    wind_usable_to: el.wind_usable_to,
+                    wind_optimal_from: el.wind_optimal_from,
+                    wind_optimal_to: el.wind_optimal_to,
+                    flying_status: el.flying_status
+                })
             console.log(el.name, el.latitude, el.longitude,d)
         }
         
     })
-    return res.json(sitesResponse.data.data[0])
+    return res.json(sitesData.sort((a,b)=>{ return a.distance - b.distance}))
 }
 
 module.exports = {
