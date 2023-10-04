@@ -25,6 +25,9 @@ router.get('/', (req,res) => {
 router.get('/sites', sites.accountDetails)
 
 
+router.get('/weather', sites.getWeather)
+
+
 // Get Single Member
 router.get('/:id', (req,res) => {
     const found = members.some(m => m.id === req.params.id)
